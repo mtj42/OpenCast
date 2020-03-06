@@ -1,0 +1,78 @@
+
+<link rel="stylesheet" href="../static/css/awesomplete.css"/>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+<script src="../static/js/awesomplete.js" type="text/javascript" charset="utf-8"></script>
+
+<input id="myinput" />
+
+<ul id="myList">
+
+</ul>
+
+
+<style>
+  
+/*  .hide-me {
+    display: none;
+  }*/
+
+</style>
+
+
+<script>
+
+String.prototype.format = function() {
+  a = this;
+  for (k in arguments) {
+    a = a.replace("{" + k + "}", arguments[k]);
+  }
+  return a;
+}
+
+
+function httpGetAsync(theUrl, callback) {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            callback(xmlHttp.responseText);
+    }
+    xmlHttp.open("GET", theUrl, true); // true for asynchronous 
+    xmlHttp.send(null);
+}
+
+
+function buildList() {
+
+  httpGetAsync("/media/list", function(data){
+    data = JSON.parse(data);
+    html = "";
+    for (var i in data) {
+        html += '<li>' + data[i] + '</li>\n';
+    }
+    $("#myList").html(html);
+
+    var input = document.getElementById("myinput");
+    var ac = new Awesomplete(input, {
+      list: myList,
+      minChars: 1
+  });
+
+  input.addEventListener("awesomplete-selectcomplete", function(e) {
+   console.log(e.text);
+  });
+
+  });
+}
+
+
+
+
+$(document).ready(function(){
+  
+  buildList();
+  
+
+
+});
+
+</script>

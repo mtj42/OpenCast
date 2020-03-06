@@ -1,0 +1,45 @@
+
+/* HTML Classes */
+
+.nav-divider {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    display: inline-block;
+    color: #bbb;
+}
+
+.no-border {
+    border: 0;
+}
+
+.no-margin {
+    margin: 0 !important;
+}
+
+.no-padding {
+    padding: 0 !important;
+}
+
+.no-shadow {
+  box-shadow: none;
+}
+
+.card {
+  height: 2rem;
+  cursor: pointer;
+}
+
+
+/* HTML IDs*/
+
+#search-box {
+  height: 5rem;
+  font-size: 1.75rem;
+  font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+
+/* Remove caret from datalist - https://stackoverflow.com/a/20941546 */
+input::-webkit-calendar-picker-indicator {
+  display: none;
+}

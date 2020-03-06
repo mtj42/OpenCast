@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <title>OpenCast</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Stylesheets -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../static/css/skeleton.css">
+    <link rel="stylesheet" href="../static/css/main.css">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+    <!-- <script type="module" src="../static/js/fuzzySearch.js"></script> -->
+    <script src="../static/js/fuse.js"></script>
+    <script src="../static/js/main.js"></script>
+
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="row">
+        <div class="six columns offset-by-eight">
+            <a class="button no-border" href="#home">Home</a>
+            <div class="nav-divider">|</div>
+            <a class="button no-border" href="#tv-shows">TV Shows</a>
+            <div class="nav-divider">|</div>
+            <a class="button no-border" href="#movies">Movies</a>
+        </div> <!--/columns-->
+      </div> <!--/row-->
+    </div> <!--/container-->
+
+    <div class="container">
+      <div class="row">
+        <div class="eight columns offset-by-two">
+          <h6 id="devices">Chromecasts available</h6>
+          {% for d in data["known_devices"] %}
+            {% if d == data["default_device"] %}
+              <button class="button button-primary cast-device" value="{{ d }}">{{ d }}</button>
+            {% else %}
+              <button class="button cast-device" value="{{ d }}">{{ d }}</button>
+            {% endif %}
+          {% endfor %}
+<!--             <button class="button button-primary cast-device" value="Family Room TV">Family Room TV</button>
+            <button class="button cast-device" value="Banana Mobile haha XD">Banana Mobile haha XD</button>
+ -->        </div> <!--/columns-->
+      </div> <!--/row-->
+    </div> <!--/container-->
+
+    <div class="container">
+      <div class="row">
+        <div class="eight columns offset-by-two">
+          <h6>Search media</h6>
+          <input class="u-full-width" id="search-box" type="text" placeholder="Search!" list="media-list">
+          <datalist id="media-list"></datalist>
+          <button id="cast-it" class="button-primary">Cast it!</button>
+          <button id="pause-it">Pause it!</button>
+          <button id="resume-it">Resume it!</button>
+        </div> <!--/columns-->
+      </div> <!--/row-->
+    </div> <!--/container-->
+
+    <div class="container">
+      <div class="row">
+        <div class="eight columns offset-by-two">
+          <h6>Resume watching</h6>
+          <div id="history">
+          </div> <!-- /history -->
+        </div> <!--/columns-->
+      </div> <!--/row-->
+    </div> <!--/container-->
+
+  </body>
+
+</html>
